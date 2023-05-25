@@ -138,6 +138,10 @@ a {
   margin-bottom: 40px;
 }
 
+.hero-action {
+  margin-top: 25px;
+}
+
 .recipe-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -174,9 +178,9 @@ a {
 }
 
 .recipe-card a {
-  background-color: var(--action-background-color);
+  background-color: var(--navbar-background-color);
   border-radius: 5px;
-  color: #FFFFFF;
+  color: var(--text-light-color);
   display: block;
   font-size: 16px;
   font-weight: 500;
@@ -192,6 +196,15 @@ a {
 .about-us {
   background-color: var(--background-light-color);
   padding: 30px;
+}
+
+.favorite-button {
+ position: absolute;
+  background: transparent;
+  border: none;
+  color: var(--text-light-color);
+  font-size: 24px;
+  cursor: pointer;
 }
 
 .about-us h1 {
