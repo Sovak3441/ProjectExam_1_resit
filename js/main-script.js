@@ -19,7 +19,7 @@ const listAllRecipes = () => {
         <button type="button" data-id="${data[i].id}" title="Add/remove favorites" class="favorite-button"><i class="ri-star-line"></i></button>
         <img src="${RecipePhotoUrl}" alt="Logo Recipe ${currentRecipe.name}">
         <h2>${currentRecipe.name}</h2>
-        <p>${currentRecipe.recipe}</p>
+        <p>${currentRecipe.description}</p>
         <p class="recipe-category">Lunch</p>
         <p>Prep Time: ${currentRecipe.cooking_time} min.</p>
         <a href="recipe.html?recipe=${data[i].id}">View Recipe</a>
@@ -45,7 +45,7 @@ const listMostViewed = () => {
         <button type="button" data-id="${data[i].id}" title="Add/remove favorites" class="favorite-button"><i class="ri-star-line"></i></button>
         <img src="${RecipePhotoUrl}" alt="Logo Recipe ${currentRecipe.name}">
         <h2>${currentRecipe.name}</h2>
-        <p>${currentRecipe.recipe}</p>
+        <p>${currentRecipe.description}</p>
         <p class="recipe-category">Lunch</p>
         <p>Prep Time: ${currentRecipe.cooking_time} min.</p>
         <a href="recipe.html?recipe=${data[i].id}">View Recipe</a>
