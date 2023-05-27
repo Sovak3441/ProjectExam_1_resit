@@ -56,7 +56,7 @@ const listMostViewed = () => {
 }
 
 const listFavorites = () => {
-  const data = JSON.parse(localStorage.getItem("recipes"));
+  const data = JSON.parse(localStorage.getItem("gfm_recipes"));
   const favoriteElement = document.querySelector("#favorites_list");
   let returnElement = "";
   let i = 0;
@@ -80,13 +80,13 @@ const listFavorites = () => {
 }
 
 const requestAll = async () => {
-  const lastLoad = localStorage.getItem("recipeLastLoad");
+  const lastLoad = localStorage.getItem("gfm_recipesLastLoad");
   if (!lastLoad || Date.now() > (parseInt(lastLoad) + parseInt(600000))) {
     try {
       const response = await fetch(apiUrl + '/recipes?populate=*');
       const jsonData = await response.json();
-      localStorage.setItem("recipes", JSON.stringify(jsonData.data));
-      localStorage.setItem("recipeLastLoad", Date.now());
+      localStorage.setItem("gfm_recipes", JSON.stringify(jsonData.data));
+      localStorage.setItem("gfm_recipesLastLoad", Date.now());
     } catch (e) {
       console.log('Error: ', e);
     }
@@ -97,7 +97,7 @@ const logIn = async (e) => {
   e.preventDefault();
   const user = document.querySelector("#username").value;
   const passwd = document.querySelector("#password").value;
-  const response = await fetch(apiUrl + "/auth/local", {
+  await fetch(apiUrl + "/auth/local", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -109,12 +109,11 @@ const logIn = async (e) => {
   })
     .then(response => response.json())
     .then(data => {
-      console.log(data.user);
       localStorage.setItem("gfm_jwt", data.jwt);
       localStorage.setItem("gfm_user_id", data.user.id);
       localStorage.setItem("gfm_user_name", data.user.username);
     })
-    .catch(err => console.log(err));
+    .catch(err => console.error(err));
 }
 console.log(document.location.pathname);
 if(document.location.pathname === "/login.html") {
