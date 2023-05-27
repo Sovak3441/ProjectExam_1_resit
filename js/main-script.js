@@ -110,7 +110,8 @@ const logIn = async (e) => {
     .then(response => response.json())
     .then(data => {
       localStorage.setItem("gfm_jwt", data.jwt);
-      localStorage.setItem("gfm_user", data.user);
+      localStorage.setItem("gfm_user_id", data.user.id);
+      localStorage.setItem("gfm_user_name", data.user.name);
     })
     .catch(err => console.log(err));
 }
