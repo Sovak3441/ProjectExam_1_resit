@@ -240,7 +240,6 @@ a {
 .recipe-details {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   background-color: var(--background-light-color);
   padding: 20px;
 }
@@ -271,6 +270,10 @@ a {
 .details-desc h2 {
   margin-bottom: 10px;
   text-align: center;
+}
+
+.details-steps h2 {
+  margin-bottom: 10px;
 }
 
 .about-us {
@@ -410,6 +413,17 @@ label {
 
   .recipe-grid {
     grid-template-columns: repeat(1, 1fr);
+  }
+
+  .recipe-details {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .details-first,
+  .details-second {
+    max-width: 100%;
+    min-width: 390px;
   }
 
   .footer-col {

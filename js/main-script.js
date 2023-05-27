@@ -86,31 +86,28 @@ const listDetails = () => {
 
   let returnElement = "";
   let searchResult;
-  const reqRecipe = data.find((recipe) => recipe.id === recipeId);
-  console.log(data);
-  console.log(data.find((recipe) => recipe.id === recipeId));
-  console.log(reqRecipe.attributes);
-/*
+  const reqRecipe = data.find((recipe) => parseInt(recipe.id) === parseInt(recipeId));
+
   const currentRecipe = reqRecipe.attributes;
   const RecipePhotoUrl = reqRecipe.attributes.photo.data.attributes.url;
-*/
+
   returnElement += `
       <div class="details-first">
       <div class="details-photo">
         <img src="https://loremflickr.com/600/600/salad" alt="details photo">
       </div>
       <div  class="details-desc">
-        <h2>Recipe Name</h2>
-        Recipe Description</div>
+        <h2>${currentRecipe.name}</h2>
+        <p>${currentRecipe.description}</p>
+      </div>
     </div>
     <div  class="details-steps details-second">
       <h2>Steps to follow</h2>
       <p>
-        Recipe steps to make it
+        ${currentRecipe.recipe}
       </p>
     </div>
     `;
-
   detailsElement.innerHTML = returnElement;
 }
 
