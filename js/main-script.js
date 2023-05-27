@@ -156,7 +156,7 @@ if (document.location.pathname === "/login.html") {
   loginButton.addEventListener("click", logIn);
 }
 
-if (document.location.pathname === "recipe.html") {
+if (document.location.pathname === "/recipe.html") {
   listDetails();
 }
 
