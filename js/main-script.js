@@ -1,5 +1,5 @@
 //const apiBaseUrl = 'http://localhost:1337';
-const apiBaseUrl ='https://seahorse-app-7ei8d.ondigitalocean.app'
+const apiBaseUrl = 'https://seahorse-app-7ei8d.ondigitalocean.app'
 const apiEndpoint = '/api';
 const apiUrl = apiBaseUrl + apiEndpoint;
 
@@ -22,7 +22,7 @@ const listAllRecipes = () => {
         <p>${currentRecipe.recipe}</p>
         <p class="recipe-category">Lunch</p>
         <p>Prep Time: ${currentRecipe.cooking_time} min.</p>
-        <a href="#">View Recipe</a>
+        <a href="recipe.html?recipe=${data[i].id}">View Recipe</a>
       </div>
     `;
   }
@@ -48,20 +48,21 @@ const listMostViewed = () => {
         <p>${currentRecipe.recipe}</p>
         <p class="recipe-category">Lunch</p>
         <p>Prep Time: ${currentRecipe.cooking_time} min.</p>
-        <a href="#">View Recipe</a>
+        <a href="recipe.html?recipe=${data[i].id}">View Recipe</a>
       </div>
     `;
   }
   recipeElement.innerHTML = returnElement;
 }
 
-const listFavorites = (res) => {
+const listFavorites = () => {
+  const data = JSON.parse(localStorage.getItem("recipes"));
   const favoriteElement = document.querySelector("#favorites_list");
   let returnElement = "";
   let i = 0;
   for (i; i < 3; i++) {
-    const currentRecipe = res[i].attributes;
-    const RecipePhotoUrl = res[i].attributes.photo.data.attributes.url;
+    const currentRecipe = data[i].attributes;
+    const RecipePhotoUrl = data[i].attributes.photo.data.attributes.url;
 
     returnElement += `
       <div class="recipe-card">
@@ -80,8 +81,7 @@ const listFavorites = (res) => {
 
 const requestAll = async () => {
   const lastLoad = localStorage.getItem("recipeLastLoad");
-  if(!lastLoad || Date.now() > (parseInt(lastLoad) + parseInt(600000))) {
-    console.log("Loaded Recipes");
+  if (!lastLoad || Date.now() > (parseInt(lastLoad) + parseInt(600000))) {
     try {
       const response = await fetch(apiUrl + '/recipes?populate=*');
       const jsonData = await response.json();
@@ -92,6 +92,31 @@ const requestAll = async () => {
     }
   }
 }
+
+const logIn = async (e) => {
+  e.preventDefault();
+  const user = document.querySelector("#username").value;
+  const passwd = document.querySelector("#password").value;
+  const response = await fetch(apiUrl + "/auth/local", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      "identifier" : user,
+      "password" : passwd
+    }),
+  })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(err => console.log(err));
+}
+console.log(document.location.pathname);
+if(document.location.pathname === "/login.html") {
+  const loginButton = document.querySelector(".submit-button");
+  loginButton.addEventListener("click", logIn);
+}
+
 requestAll();
 
 
