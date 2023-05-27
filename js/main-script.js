@@ -4,7 +4,7 @@ const apiEndpoint = '/api';
 const apiUrl = apiBaseUrl + apiEndpoint;
 
 const listAllRecipes = () => {
-  const data = JSON.parse(localStorage.getItem("recipes"));
+  const data = JSON.parse(localStorage.getItem("gfm_recipes"));
 
   const recipeElement = document.querySelector("#all_recipes_list");
   let returnElement = "";
@@ -30,7 +30,7 @@ const listAllRecipes = () => {
 }
 
 const listMostViewed = () => {
-  const data = JSON.parse(localStorage.getItem("recipes"));
+  const data = JSON.parse(localStorage.getItem("gfm_recipes"));
 
   const recipeElement = document.querySelector("#most_viewed_list");
   let returnElement = "";
@@ -81,6 +81,7 @@ const listFavorites = () => {
 
 const requestAll = async () => {
   const lastLoad = localStorage.getItem("gfm_recipesLastLoad");
+
   if (!lastLoad || Date.now() > (parseInt(lastLoad) + parseInt(600000))) {
     try {
       const response = await fetch(apiUrl + '/recipes?populate=*');
@@ -103,8 +104,8 @@ const logIn = async (e) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      "identifier" : user,
-      "password" : passwd
+      "identifier": user,
+      "password": passwd
     }),
   })
     .then(response => response.json())
@@ -112,11 +113,11 @@ const logIn = async (e) => {
       localStorage.setItem("gfm_jwt", data.jwt);
       localStorage.setItem("gfm_user_id", data.user.id);
       localStorage.setItem("gfm_user_name", data.user.username);
+      window.location.href("index.html");
     })
     .catch(err => console.error(err));
 }
-console.log(document.location.pathname);
-if(document.location.pathname === "/login.html") {
+if (document.location.pathname === "/login.html") {
   const loginButton = document.querySelector(".submit-button");
   loginButton.addEventListener("click", logIn);
 }
