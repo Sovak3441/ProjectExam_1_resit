@@ -113,7 +113,7 @@ const logIn = async (e) => {
       localStorage.setItem("gfm_jwt", data.jwt);
       localStorage.setItem("gfm_user_id", data.user.id);
       localStorage.setItem("gfm_user_name", data.user.username);
-      window.location.href("index.html");
+      window.location.replace = "index.html";
     })
     .catch(err => console.error(err));
 }
