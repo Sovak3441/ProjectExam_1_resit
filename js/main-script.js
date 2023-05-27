@@ -79,6 +79,41 @@ const listFavorites = () => {
   favoriteElement.innerHTML = returnElement;
 }
 
+const listDetails = () => {
+  const detailsElement = document.querySelector("#recipe-details");
+  const recipeId = new URLSearchParams(window.location.search).get('recipe');
+  const data = JSON.parse(localStorage.getItem("gfm_recipes"));
+
+  let returnElement = "";
+  let searchResult;
+  const reqRecipe = data.find((recipe) => recipe.id === recipeId);
+  console.log(data);
+  console.log(data.find((recipe) => recipe.id === recipeId));
+  console.log(reqRecipe.attributes);
+/*
+  const currentRecipe = reqRecipe.attributes;
+  const RecipePhotoUrl = reqRecipe.attributes.photo.data.attributes.url;
+*/
+  returnElement += `
+      <div class="details-first">
+      <div class="details-photo">
+        <img src="https://loremflickr.com/600/600/salad" alt="details photo">
+      </div>
+      <div  class="details-desc">
+        <h2>Recipe Name</h2>
+        Recipe Description</div>
+    </div>
+    <div  class="details-steps details-second">
+      <h2>Steps to follow</h2>
+      <p>
+        Recipe steps to make it
+      </p>
+    </div>
+    `;
+
+  detailsElement.innerHTML = returnElement;
+}
+
 const requestAll = async () => {
   const lastLoad = localStorage.getItem("gfm_recipesLastLoad");
 
@@ -113,13 +148,19 @@ const logIn = async (e) => {
       localStorage.setItem("gfm_jwt", data.jwt);
       localStorage.setItem("gfm_user_id", data.user.id);
       localStorage.setItem("gfm_user_name", data.user.username);
-      window.location.replace = "index.html";
+      window.location.href = "index.html";
     })
     .catch(err => console.error(err));
 }
+
+// Page specific handling
 if (document.location.pathname === "/login.html") {
   const loginButton = document.querySelector(".submit-button");
   loginButton.addEventListener("click", logIn);
+}
+
+if (document.location.pathname === "/ProjectExam_1_resit/recipe.html") {
+  listDetails();
 }
 
 requestAll();

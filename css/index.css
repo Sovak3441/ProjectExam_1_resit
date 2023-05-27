@@ -237,6 +237,42 @@ a {
   text-decoration: none;
 }
 
+.recipe-details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: var(--background-light-color);
+  padding: 20px;
+}
+
+.details-first,
+.details-second {
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+  min-width: 390px;
+  padding: 5px;
+}
+
+.details-second {
+  align-items: center;
+}
+
+.details-photo img {
+  width: 100%;
+  scale: 1;
+  margin-bottom: 10px;
+}
+
+.details-desc {
+
+}
+
+.details-desc h2 {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
 .about-us {
   background-color: var(--background-light-color);
   padding: 30px;
