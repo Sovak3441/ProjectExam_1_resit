@@ -94,7 +94,7 @@ const listDetails = () => {
   returnElement += `
       <div class="details-first">
       <div class="details-photo">
-        <img src="https://loremflickr.com/600/600/salad" alt="details photo">
+        <img src="${RecipePhotoUrl}" alt="details photo for ${currentRecipe.name}">
       </div>
       <div  class="details-desc">
         <h2>${currentRecipe.name}</h2>
