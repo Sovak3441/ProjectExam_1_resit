@@ -1,4 +1,3 @@
-//const apiBaseUrl = 'http://localhost:1337';
 const apiBaseUrl = 'https://seahorse-app-7ei8d.ondigitalocean.app'
 const apiEndpoint = '/api';
 const apiUrl = apiBaseUrl + apiEndpoint;
@@ -17,7 +16,7 @@ const listAllRecipes = () => {
   let i = 0;
   for (i; i < data.length; i++) {
     const currentRecipe = data[i].attributes;
-    const RecipePhotoUrl = data[i].attributes.photo.data.attributes.formats.medium.url;
+    const RecipePhotoUrl = data[i].attributes.photo.data.attributes.formats.large.url;
 
     returnElement += `
       <div class="all-recipe-card">
