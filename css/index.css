@@ -217,7 +217,7 @@ a {
   border-radius: 5px;
   color: var(--text-light-color);
   display: block;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   padding: 10px 20px;
   text-decoration: none;
@@ -250,7 +250,7 @@ a {
 }
 
 .details-desc {
-  font-size: 16px;
+
 }
 
 .details-desc h2 {

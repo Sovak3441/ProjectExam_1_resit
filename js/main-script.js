@@ -147,7 +147,8 @@ const requestAll = async () => {
 }
 
 const loginActionBtn = document.querySelector("#login-btn");
-loginActionBtn.addEventListener("click", () => {
+loginActionBtn.addEventListener("click", (e) => {
+  e.preventDefault();
   if(loginActionBtn.textContent === "Log Out") {
     logout();
   } else {
@@ -156,7 +157,6 @@ loginActionBtn.addEventListener("click", () => {
 });
 
 const logIn = async (e) => {
-  e.preventDefault();
   const user = document.querySelector("#username").value;
   const passwd = document.querySelector("#password").value;
   await fetch(apiUrl + "/auth/local", {
