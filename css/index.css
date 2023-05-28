@@ -214,6 +214,7 @@ a {
   justify-content: space-between;
   overflow: hidden;
   text-align: center;
+  font-size: 16px;
 }
 
 .all-recipe-card img {
