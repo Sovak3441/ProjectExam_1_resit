@@ -436,6 +436,7 @@ textarea {
 .footer-col {
   flex-basis: 50%;
   text-align: right;
+  font-size: 16px;
 }
 
 .footer-col:first-child {
@@ -454,7 +455,6 @@ textarea {
 
 .footer-nav a {
   color: var(--text-dark-color);
-  font-size: 16px;
   font-weight: 400;
 }
 
