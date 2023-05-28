@@ -184,7 +184,7 @@ const isLoggedIn = () => {
 
 // Page specific handling
 
-if (document.location.pathname === "/ProjectExam_1_resit/contact.html") {
+if (document.location.pathname === "contact.html") {
   const name = document.querySelector("#name");
   const email = document.querySelector("#email");
   const message = document.querySelector("#message");
@@ -246,12 +246,12 @@ if (document.location.pathname === "/ProjectExam_1_resit/contact.html") {
   });
 }
 
-if (document.location.pathname === "/ProjectExam_1_resit/login.html") {
+if (document.location.pathname === "login.html") {
   const loginButton = document.querySelector(".submit-button");
   loginButton.addEventListener("click", logIn);
 }
 
-if (document.location.pathname === "/ProjectExam_1_resit/recipe.html") {
+if (document.location.pathname === "recipe.html") {
   listDetails();
 }
 
