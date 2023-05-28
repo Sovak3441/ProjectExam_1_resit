@@ -453,14 +453,16 @@ textarea {
 
   .menu-wrapper {
     position: absolute;
-    top: 25px;
-    right: 25%;
+    top: 0;
+    right: 1px;
     display: flex;
     height: ;
     flex-direction: column;
     background-color: var(--navbar-background-color);
     border-radius: 10px;
-    padding: 15px;
+    padding-top: 55px;
+    padding-right: 5px;
+    padding-left: 5px;
   }
 
   .recipe-grid {
