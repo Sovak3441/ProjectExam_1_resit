@@ -5,7 +5,7 @@
   --background-light-color: #E5E5E5;
   --navbar-background-color: #50C878;
   --action-background-color: #F28C28;
-  --text-light-color: #FFFFFF;
+  --text-light-color: #333333;
   --text-dark-color: #0d0613;
   --text-muted-color: #757575;
 }
@@ -454,7 +454,7 @@ textarea {
 
 .footer-nav a {
   color: var(--text-dark-color);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
 }
 
