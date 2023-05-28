@@ -200,7 +200,7 @@ const isLoggedIn = () => {
 
 // Page specific handling
 
-if (document.location.pathname === "contact.html") {
+if (document.location.pathname === "/contact.html") {
   const name = document.querySelector("#name");
   const email = document.querySelector("#email");
   const message = document.querySelector("#message");
@@ -262,12 +262,12 @@ if (document.location.pathname === "contact.html") {
   });
 }
 
-if (document.location.pathname === "login.html") {
+if (document.location.pathname === "/login.html") {
   const loginButton = document.querySelector(".submit-button");
   loginButton.addEventListener("click", logIn);
 }
 
-if (document.location.pathname === "recipe.html") {
+if (document.location.pathname === "/recipe.html") {
   listDetails();
 }
 
