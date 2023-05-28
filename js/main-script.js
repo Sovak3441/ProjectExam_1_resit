@@ -3,6 +3,11 @@ const apiBaseUrl = 'https://seahorse-app-7ei8d.ondigitalocean.app'
 const apiEndpoint = '/api';
 const apiUrl = apiBaseUrl + apiEndpoint;
 
+const mobileBtn = document.querySelector("#mobilebutton");
+mobileBtn.addEventListener("click", () => {
+  document.querySelector(".menu, .action").style.display = "block";
+});
+
 const listAllRecipes = () => {
   const data = JSON.parse(localStorage.getItem("gfm_recipes"));
 
@@ -31,7 +36,6 @@ const listAllRecipes = () => {
 
 const listMostViewed = () => {
   const data = JSON.parse(localStorage.getItem("gfm_recipes"));
-
   const recipeElement = document.querySelector("#most_viewed_list");
   let returnElement = "";
 
@@ -57,9 +61,13 @@ const listMostViewed = () => {
 
 const listFavorites = () => {
   const data = JSON.parse(localStorage.getItem("gfm_recipes"));
+  const userId = localStorage.getItem("gfm_user_id");
   const favoriteElement = document.querySelector("#favorites_list");
   let returnElement = "";
+
+  console.log(userFavorites);
   let i = 0;
+  /*
   for (i; i < 3; i++) {
     const currentRecipe = data[i].attributes;
     const RecipePhotoUrl = data[i].attributes.photo.data.attributes.url;
@@ -76,7 +84,8 @@ const listFavorites = () => {
       </div>
     `;
   }
-  favoriteElement.innerHTML = returnElement;
+  */
+  //favoriteElement.innerHTML = returnElement;
 }
 
 const listDetails = () => {
@@ -85,7 +94,6 @@ const listDetails = () => {
   const data = JSON.parse(localStorage.getItem("gfm_recipes"));
 
   let returnElement = "";
-  let searchResult;
   const reqRecipe = data.find((recipe) => parseInt(recipe.id) === parseInt(recipeId));
 
   const currentRecipe = reqRecipe.attributes;
@@ -113,11 +121,24 @@ const listDetails = () => {
 
 const requestAll = async () => {
   const lastLoad = localStorage.getItem("gfm_recipesLastLoad");
+  const currentUser = localStorage.getItem("gfm_user_id");
+  const userToken = localStorage.getItem("gfm_jwt");
+  let fetchInit = {};
+  if(currentUser) {
+    fetchInit = {
+      method: 'get',
+      headers: {
+        'Authorization': `Bearer ${userToken} `,
+        'Content-Type': 'application/json'
+      }
+    }
+  }
 
-  if (!lastLoad || Date.now() > (parseInt(lastLoad) + parseInt(600000))) {
+  if (!lastLoad || Date.now() > (parseInt(lastLoad) + parseInt(15000))) {
     try {
-      const response = await fetch(apiUrl + '/recipes?populate=*');
+      const response = await fetch(apiUrl + '/recipes?populate=*', fetchInit);
       const jsonData = await response.json();
+      console.log(jsonData);
       localStorage.setItem("gfm_recipes", JSON.stringify(jsonData.data));
       localStorage.setItem("gfm_recipesLastLoad", Date.now());
     } catch (e) {
@@ -150,17 +171,93 @@ const logIn = async (e) => {
     .catch(err => console.error(err));
 }
 
+
+const isLoggedIn = () => {
+  const authenticated = localStorage.getItem("gfm_user_id");
+  if (authenticated) {
+    const loginActionButton = document.querySelector("#login-btn");
+    loginActionButton.textContent = "Log Out"
+    return true;
+  }
+}
+
+
 // Page specific handling
-if (document.location.pathname === "/login.html") {
+
+if (document.location.pathname === "/ProjectExam_1_resit/contact.html") {
+  const name = document.querySelector("#name");
+  const email = document.querySelector("#email");
+  const message = document.querySelector("#message");
+  const contactSubmitBtn = document.querySelector("#contact_submit");
+  let contactError = false;
+
+  const validMail = (address) => {
+    return String(address)
+      .toLowerCase()
+      .match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+  };
+
+  name.addEventListener("change", () => {
+    if (name.value.length < 8) {
+      name.style.border = "red solid 1px";
+      document.querySelector("#name_error").textContent = "Name too short. Min 8 chars";
+      contactError = true;
+    } else {
+      name.style.border = "";
+      document.querySelector("#name_error").textContent = "";
+      contactError = false;
+    }
+  });
+
+  email.addEventListener("change", () => {
+    if (!validMail(email.value)) {
+      email.style.border = "red solid 1px";
+      document.querySelector("#email_error").textContent = "Invalid email format!";
+      contactError = true;
+    } else {
+      email.style.border = "";
+      document.querySelector("#email_error").textContent = "";
+      contactError = false;
+    }
+  });
+
+  message.addEventListener("change", () => {
+    if (message.value.length < 25) {
+      message.style.border = "red solid 1px";
+      document.querySelector("#message_error").textContent = "Message too short. Min 25 chars";
+      contactError = true;
+    } else {
+      message.style.border = "";
+      document.querySelector("#message_error").textContent = "";
+      contactError = false;
+    }
+  });
+
+  contactSubmitBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (!contactError) {
+      const success = document.querySelector(".contact-success");
+      success.textContent = "Your message have been sent. We will be in touch as soon as possible. You will now be redirected to the homepage in 3 seconds.";
+      success.style.display = "block";
+      setTimeout(function () {
+        window.location.href = "index.html";
+      }, 3000);
+    }
+  });
+}
+
+if (document.location.pathname === "/ProjectExam_1_resit/login.html") {
   const loginButton = document.querySelector(".submit-button");
   loginButton.addEventListener("click", logIn);
 }
 
-if (document.location.pathname === "/recipe.html") {
+if (document.location.pathname === "/ProjectExam_1_resit/recipe.html") {
   listDetails();
 }
 
 requestAll();
+isLoggedIn();
+listFavorites();
 
 
 

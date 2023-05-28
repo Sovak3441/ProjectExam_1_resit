@@ -5,7 +5,7 @@
   --background-light-color: #E5E5E5;
   --navbar-background-color: #50C878;
   --action-background-color: #F28C28;
-  --text-light-color: #E5E5E5;
+  --text-light-color: #FFFFFF;
   --text-dark-color: #0d0613;
   --text-muted-color: #757575;
 }
@@ -87,6 +87,12 @@ a {
   font-weight: 500;
   padding: 10px 20px;
   text-decoration: none;
+  margin: 10px;
+}
+
+.menu-wrapper {
+  display: flex;
+  justify-content: space-between;
 }
 
 .mobile-menu-button {
@@ -205,6 +211,10 @@ a {
   padding: 10px;
 }
 
+.favorites {
+  display: none;
+}
+
 .all-recipes {
   background-color: var(--background-light-color);
   display: grid;
@@ -282,7 +292,7 @@ a {
 }
 
 .favorite-button {
- position: absolute;
+  position: absolute;
   background: transparent;
   border: none;
   color: var(--text-light-color);
@@ -294,7 +304,7 @@ a {
   font-size: 30px;
 }
 
-.about-us p{
+.about-us p {
   font-size: 16px;
   line-height: 1.5;
   color: var(--text-dark-color);
@@ -305,7 +315,6 @@ a {
   font-weight: bold;
 }
 
-/* Login form start */
 .login-wrapper {
   height: 80vh;
   width: 100%;
@@ -353,11 +362,58 @@ label {
   background-color: #3e8e41;
 }
 
-.error {
-  color: red;
-  margin-bottom: 10px;
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--background-light-color);
 }
-/* Login form end */
+
+.contact h1 {
+  color: var(--text-dark-color);
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 40px;
+  padding: 10px;
+}
+
+.contact-form {
+  max-width: 400px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.contact-form div {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.contact-error {
+  border: red;
+}
+
+.contact-success {
+  font-size: 20px;
+  font-weight: 400;
+  background-color: #50C878;
+  border-radius: 15px;
+  padding: 10px;
+  display: none;
+}
 
 .footer-container {
   width: 100%;

@@ -32,16 +32,28 @@
   </nav>
 </header>
 <main>
-  <div class="login-wrapper">
-    <form>
-      <h1>Login</h1>
-      <label for="username">Username</label>
-      <input class="input-field" type="text" id="username" name="username" value="demo-user" required>
-      <label for="password">Password</label>
-      <input class="input-field" type="password" id="password" name="password" value="AbadPassword" required>
-      <input class="submit-button" type="submit" value="Login">
+  <section class="contact">
+    <h1>Contact Us</h1>
+    <form class="contact-form">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <span class="contact-error" id="name_error"></span>
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <span class="contact-error" id="email_error"></span>
+      </div>
+      <div>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+        <span class="contact-error" id="message_error"></span>
+      </div>
+      <button id="contact_submit" class="submit-button" type="submit">Submit</button>
     </form>
-  </div>
+    <p class="contact-success"></p>
+  </section>
 </main>
 <footer class="footer-container">
   <div class="footer-row">
@@ -54,7 +66,7 @@
       <ul class="footer-nav">
         <li>Terms of Use</li>
         <li>Privacy Policy</li>
-        <li><a href="#">Contact Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
       </ul>
     </div>
   </div>
