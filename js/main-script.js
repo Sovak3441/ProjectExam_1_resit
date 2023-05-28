@@ -149,7 +149,7 @@ const requestAll = async () => {
 const loginActionBtn = document.querySelector("#login-btn");
 loginActionBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  if(loginActionBtn.textContent === "Log Out") {
+  if (loginActionBtn.textContent === "Log Out") {
     logout();
   } else {
     window.location.href = "login.html";
@@ -265,6 +265,41 @@ if (document.location.pathname === "/contact.html") {
 if (document.location.pathname === "/login.html") {
   const loginButton = document.querySelector(".submit-button");
   loginButton.addEventListener("click", logIn);
+}
+
+if (document.location.pathname === "/recipes.html") {
+  const searchInput = document.querySelector("#search");
+  searchInput.addEventListener("keyup", () => {
+    if (searchInput.value.length > 3) {
+      const data = JSON.parse(localStorage.getItem("gfm_recipes"));
+      const recipes = data.filter((recipe) => recipe.attributes.name.toLowerCase().includes(searchInput.value.toLowerCase()));
+
+      const recipeElement = document.querySelector("#all_recipes_list");
+      let returnElement = "";
+
+      let i = 0;
+      for (i; i < recipes.length; i++) {
+        const currentRecipe = recipes[i].attributes;
+        const RecipePhotoUrl = recipes[i].attributes.photo.data.attributes.url;
+
+        returnElement += `
+      <div class="all-recipe-card">
+        <button type="button" data-id="${recipes[i].id}" title="Add/remove favorites" class="favorite-button"><i class="ri-star-line"></i></button>
+        <img src="${RecipePhotoUrl}" alt="Logo Recipe ${currentRecipe.name}">
+        <h2>${currentRecipe.name}</h2>
+        <p>${currentRecipe.description}</p>
+        <p class="recipe-category">Lunch</p>
+        <p>Prep Time: ${currentRecipe.cooking_time} min.</p>
+        <a href="recipe.html?recipe=${recipes[i].id}">View Recipe</a>
+      </div>
+    `;
+      }
+      recipeElement.innerHTML = returnElement;
+
+    } else if (searchInput.value.length <= 3) {
+      listAllRecipes();
+    }
+  });
 }
 
 if (document.location.pathname === "/recipe.html") {

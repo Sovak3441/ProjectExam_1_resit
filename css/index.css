@@ -226,6 +226,12 @@ a {
   text-decoration: none;
 }
 
+.search {
+  position: relative;
+  width: 150px;
+  padding: 15px;
+}
+
 .recipe-details {
   display: flex;
   flex-direction: row;
