@@ -152,11 +152,12 @@ loginActionBtn.addEventListener("click", (e) => {
   if(loginActionBtn.textContent === "Log Out") {
     logout();
   } else {
-    logIn();
+    window.location.href = "login.html";
   }
 });
 
 const logIn = async (e) => {
+  e.preventDefault();
   const user = document.querySelector("#username").value;
   const passwd = document.querySelector("#password").value;
   await fetch(apiUrl + "/auth/local", {
