@@ -250,7 +250,12 @@ if (document.location.pathname === "/contact.html") {
 
   contactSubmitBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    if (!contactError || message.value.length !== 0 || email.value.length !== 0 || name.value.length !== 0) {
+    if(message.value === "" || email.value === "" || name.value === "") {
+      contactError = true;
+    } else {
+      contactError = false;
+    }
+    if (!contactError) {
       const success = document.querySelector(".contact-success");
       success.textContent = "Your message have been sent. We will be in touch as soon as possible. You will now be redirected to the homepage in 3 seconds.";
       success.style.display = "block";
