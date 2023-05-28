@@ -273,10 +273,9 @@ if (document.location.pathname === "/recipes.html") {
     if (searchInput.value.length > 3) {
       const data = JSON.parse(localStorage.getItem("gfm_recipes"));
       const recipes = data.filter((recipe) => recipe.attributes.name.toLowerCase().includes(searchInput.value.toLowerCase()));
-
       const recipeElement = document.querySelector("#all_recipes_list");
-      let returnElement = "";
 
+      let returnElement = "";
       let i = 0;
       for (i; i < recipes.length; i++) {
         const currentRecipe = recipes[i].attributes;

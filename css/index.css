@@ -94,7 +94,6 @@ a {
 .menu-wrapper {
   display: flex;
   justify-content: space-between;
-  height: 100%;
   justify-items: center;
 }
 
@@ -457,6 +456,7 @@ textarea {
     top: 25px;
     right: 25%;
     display: flex;
+    height: ;
     flex-direction: column;
     background-color: var(--navbar-background-color);
     border-radius: 10px;
