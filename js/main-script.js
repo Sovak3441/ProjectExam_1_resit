@@ -249,7 +249,7 @@ if (document.location.pathname === "/contact.html") {
 
   contactSubmitBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    if(message.value === "" || email.value === "" || name.value === "") {
+    if(message.value === "" || message.value < 25 || email.value === "" || !validMail(email.value) || name.value === "" || name.value.length < 8) {
       contactError = true;
     } else {
       contactError = false;
