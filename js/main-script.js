@@ -16,7 +16,7 @@ const listAllRecipes = () => {
   let i = 0;
   for (i; i < data.length; i++) {
     const currentRecipe = data[i].attributes;
-    const RecipePhotoUrl = data[i].attributes.photo.data.attributes.formats.large.url;
+    const RecipePhotoUrl = data[i].attributes.photo.data.attributes.formats.medium.url;
 
     returnElement += `
       <div class="all-recipe-card">
@@ -41,7 +41,7 @@ const listMostViewed = () => {
   let i = 0;
   for (i; i < 3; i++) {
     const currentRecipe = data[i].attributes;
-    const RecipePhotoUrl = data[i].attributes.photo.data.attributes.formats.large.url;
+    const RecipePhotoUrl = data[i].attributes.photo.data.attributes.formats.medium.url;
 
     returnElement += `
       <div class="recipe-card">
