@@ -58,6 +58,7 @@ a {
   list-style: none;
   margin: 0;
   padding: 0;
+  margin-right: 10px;
 }
 
 .menu li {
@@ -93,6 +94,8 @@ a {
 .menu-wrapper {
   display: flex;
   justify-content: space-between;
+  height: 100%;
+  justify-items: center;
 }
 
 .mobile-menu-button {
