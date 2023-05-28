@@ -65,7 +65,6 @@ const listFavorites = () => {
   const favoriteElement = document.querySelector("#favorites_list");
   let returnElement = "";
 
-  console.log(userFavorites);
   let i = 0;
   /*
   for (i; i < 3; i++) {
@@ -124,7 +123,7 @@ const requestAll = async () => {
   const currentUser = localStorage.getItem("gfm_user_id");
   const userToken = localStorage.getItem("gfm_jwt");
   let fetchInit = {};
-  if(currentUser) {
+  if (currentUser) {
     fetchInit = {
       method: 'get',
       headers: {
@@ -146,6 +145,15 @@ const requestAll = async () => {
     }
   }
 }
+
+const loginActionBtn = document.querySelector("#login-btn");
+loginActionBtn.addEventListener("click", () => {
+  if(loginActionBtn.textContent === "Log Out") {
+    logout();
+  } else {
+    logIn();
+  }
+});
 
 const logIn = async (e) => {
   e.preventDefault();
@@ -169,6 +177,13 @@ const logIn = async (e) => {
       window.location.href = "index.html";
     })
     .catch(err => console.error(err));
+}
+
+const logout = () => {
+  localStorage.removeItem("gfm_jwt");
+  localStorage.removeItem("gfm_user_id");
+  localStorage.removeItem("gfm_user_name");
+  window.location.href = "index.html";
 }
 
 
@@ -257,7 +272,6 @@ if (document.location.pathname === "recipe.html") {
 
 requestAll();
 isLoggedIn();
-listFavorites();
 
 
 
